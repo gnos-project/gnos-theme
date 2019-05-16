@@ -1,6 +1,6 @@
 
 # TIP: Build, pack & copy
-# time \sudo ./gnos --config /etc/gnos.conf i BuildTheme Gnos-theme
+# time sudo gnos -a theme.bash Internal BuildTheme Gnos-theme
 # zip -r Gnos-theme.zip Gnos-theme ; zip -r Gnos-theme.src.zip Gnos-theme.src
 # cp  Gnos-theme.zip Gnos-theme.src.zip /data/code/gnos/gnos-theme
 # scp Gnos-theme.zip Gnos-theme.src.zip mbp:/data/code/gnos/gnos-theme
@@ -1037,6 +1037,8 @@ EOF
 
     BuildSublimeStyles "$dstPath/sublime-afterglow-orange"
 
+    BuildGtkSourceStyles "$dstPath/gtk-source"
+
     BuildAudacityStyles "$dstPath/audacity"
 
     # OLD BuildFirefoxStyles "$dstPath/firefox"
@@ -1046,6 +1048,127 @@ EOF
 
     find "$dstPath" -type d -exec chmod 0755 {} \;
     find "$dstPath" -type f -exec chmod 0644 {} \;
+}
+
+
+
+
+BuildGtkSourceStyles() # $1:PATH
+{
+    sys::Mkdir "$1"
+    sys::Write <<EOF "$1/classic-override.xml" 0:0 755
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+FROM: https://wiki.gnome.org/Projects/GtkSourceView/StyleSchemes?action=AttachFile&do=view&target=tomorrow_night-eighties.xml
+BASE: https://github.com/chriskempson/tomorrow-theme
+-->
+
+<style-scheme id="classic" _name="$THEME_GTK" version="1.0">
+  <author>$THEME_GTK</author>
+  <_description>$THEME_GTK</_description>
+
+  <style name="text" foreground="#$THEME_COLOR_FOREGD_HEX" background="#$THEME_COLOR_BACKGD_HEX"/>
+  <style name="selection" foreground="#ffffff" background="#$THEME_COLOR_SELECT_HEX"/>
+  <style name="line-numbers" foreground="#$THEME_COLOR_OBJECT_HEX" background="#$THEME_COLOR_BACKGD_HEX"/>
+  <style name="def:builtin" foreground="#f99157"/>
+  <style name="background-pattern" background="#000000"/>
+  <style name="bracket-match"  background="#393939" bold="true"/>
+  <style name="bracket-mismatch"  background="#393939" underline="true"/>
+  <style name="css:at-rules" foreground="#C45837"/>
+  <style name="css:color" foreground="#cccccc"/>
+  <style name="css:keyword" foreground="#ffcc66"/>
+  <style name="current-line"  background="#393939"/>
+  <style name="cursor" foreground="#cccccc"/>
+  <style name="def:base-n-integer" foreground="#f99157"/>
+  <style name="def:boolean" foreground="#f99157"/>
+  <style name="def:character" foreground="#f99157"/>
+  <style name="def:comment" foreground="#999999"/>
+  <style name="def:complex" foreground="#f99157"/>
+  <style name="def:decimal" foreground="#f99157"/>
+  <style name="def:doc-comment" foreground="#999999"/>
+  <style name="def:doc-comment-element" foreground="#999999"/>
+  <style name="def:error" foreground="#cdcdcd" background="#f2777a"/>
+  <style name="def:floating-point" foreground="#f99157"/>
+  <style name="def:function" foreground="#6699cc"/>
+  <style name="def:identifier" foreground="#f2777a"/>
+  <style name="def:keyword" foreground="#C45837"/>
+  <style name="def:note" foreground="#999999"/>
+  <style name="def:number" foreground="#f99157"/>
+  <style name="def:operator" foreground="#66cccc"/>
+  <style name="def:preprocessor" foreground="#f99157"/>
+  <style name="def:reserved" foreground="#C45837"/>
+  <style name="def:shebang" foreground="#999999"/>
+  <style name="def:special-char" foreground="#f99157"/>
+  <style name="def:special-constant" foreground="#f99157"/>
+  <style name="def:statement" foreground="#C45837"/>
+  <style name="def:string" foreground="#99cc99"/>
+  <style name="def:type" foreground="#ffcc66"/>
+  <style name="draw-spaces" foreground="#6a6a6a"/>
+  <style name="html:dtd" foreground="#99cc99"/>
+  <style name="html:tag" foreground="#f2777a"/>
+  <style name="js:function" foreground="#6699cc"/>
+  <style name="perl:builtin" foreground="#6699cc"/>
+  <style name="perl:include-statement" foreground="#C45837"/>
+  <style name="perl:special-variable" foreground="#f99157"/>
+  <style name="perl:variable" foreground="#f2777a"/>
+  <style name="php:string" foreground="#99cc99"/>
+  <style name="python:builtin-constant" foreground="#C45837"/>
+  <style name="python:builtin-function" foreground="#6699cc"/>
+  <style name="python:module-handler" foreground="#C45837"/>
+  <style name="python:special-variable" foreground="#C45837"/>
+  <style name="ruby:attribute-definition" foreground="#C45837"/>
+  <style name="ruby:builtin" foreground="#f2777a"/>
+  <style name="ruby:class-variable" foreground="#f2777a"/>
+  <style name="ruby:constant" foreground="#f2777a"/>
+  <style name="ruby:global-variable" foreground="#6699cc"/>
+  <style name="ruby:instance-variable" foreground="#f2777a"/>
+  <style name="ruby:module-handler" foreground="#C45837"/>
+  <style name="ruby:predefined-variable" foreground="#f99157"/>
+  <style name="ruby:regex" foreground="#99cc99"/>
+  <style name="ruby:special-variable" foreground="#C45837"/>
+  <style name="ruby:symbol" foreground="#99cc99"/>
+  <style name="rubyonrails:attribute-definition" foreground="#C45837"/>
+  <style name="rubyonrails:block-parameter" foreground="#f99157"/>
+  <style name="rubyonrails:builtin" foreground="#f2777a"/>
+  <style name="rubyonrails:class-inherit" foreground="#99cc99"/>
+  <style name="rubyonrails:class-name" foreground="#ffcc66"/>
+  <style name="rubyonrails:class-variable" foreground="#f2777a"/>
+  <style name="rubyonrails:complex-interpolation" foreground="#f99157"/>
+  <style name="rubyonrails:constant" foreground="#f2777a"/>
+  <style name="rubyonrails:global-variable" foreground="#6699cc"/>
+  <style name="rubyonrails:instance-variable" foreground="#f2777a"/>
+  <style name="rubyonrails:module-handler" foreground="#C45837"/>
+  <style name="rubyonrails:module-name" foreground="#ffcc66"/>
+  <style name="rubyonrails:predefined-variable" foreground="#f99157"/>
+  <style name="rubyonrails:rails" foreground="#f2777a"/>
+  <style name="rubyonrails:regex" foreground="#99cc99"/>
+  <style name="rubyonrails:simple-interpolation" foreground="#f99157"/>
+  <style name="rubyonrails:special-variable" foreground="#C45837"/>
+  <style name="rubyonrails:symbol" foreground="#99cc99"/>
+  <style name="search-match"  background="#393939" bold="true" underline="true"/>
+  <style name="xml:attribute-name" foreground="#f2777a"/>
+  <style name="xml:doctype" foreground="#f2777a"/>
+  <style name="xml:element-name" foreground="#f2777a"/>
+  <style name="xml:namespace" foreground="#f2777a"/>
+  <style name="xml:tag" foreground="#f2777a"/>
+
+  <!-- meld -->
+  <style name="meld:insert" background="#113800" foreground="#4e9a06" line-background="#309900"/>
+  <style name="meld:inline" background="#rgba(255, 255, 255, 0.07)"/>
+  <style name="meld:replace" background="#002142" foreground="#2d6cfc" line-background="#0066cc"/>
+  <style name="meld:conflict" background="#3D1514" foreground="#ff0000" line-background="#ac3b39"/>
+  <style name="meld:current-chunk-highlight" background="#rgba(0, 0, 0, 0.40)"/>
+  <style name="meld:current-line-highlight" background="#000000"/>
+
+</style-scheme>
+EOF
+  # TODO test these:
+  #   <style name="meld:delete" background="#ffffff" foreground="#a40000" line-background="#cccccc"/>
+  #   <style name="meld:error" background="#fce94f" foreground="#faad3d" line-background="#fdf8cd"/>
+  #   <style name="meld:unknown-text" foreground="#aaaaaa"/>
+  #   <style name="meld:syncpoint-outline" foreground="#bbbbbb"/>
+  #   <style name="meld:dimmed" foreground="#999999"/>
+
 }
 
 
@@ -2949,3 +3072,4 @@ VAAAAABJRU5ErkJggg==
 EOF
 
 }
+
