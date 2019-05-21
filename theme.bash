@@ -1033,9 +1033,11 @@ EOF
 
     # OTHER Styles
 
+    BuildKvantumStyles "$dstPath/kvantum"
+
     BuildBrandingStyles "$dstPath/branding"
 
-    BuildSublimeStyles "$dstPath/sublime-afterglow-orange"
+    BuildSublimeStyles "$dstPath/sublime-text"
 
     BuildGtkSourceStyles "$dstPath/gtk-source"
 
@@ -1048,6 +1050,34 @@ EOF
 
     find "$dstPath" -type d -exec chmod 0755 {} \;
     find "$dstPath" -type f -exec chmod 0644 {} \;
+}
+
+
+
+
+BuildKvantumStyles() # $1:PATH
+{
+    sys::Mkdir "$1"
+
+    net::Download \
+        https://raw.githubusercontent.com/tsujan/Kvantum/master/Kvantum/themes/kvthemes/KvArcDark/KvArcDark.kvconfig \
+        "$1/$THEME_GTK.kvconfig"
+        
+    net::Download \
+        https://raw.githubusercontent.com/tsujan/Kvantum/master/Kvantum/themes/kvthemes/KvArcDark/KvArcDark.svg \
+        "$1/$THEME_GTK.svg"
+
+    sed -i -E \
+        -e "s/#(383c4a|2b2e39|343743|202128|262934|2f343f|353945|3e4350|3e4351|303440|3e4350|313541|767b87|8f939d|414857|353a47)/#$THEME_COLOR_WINDOW_HEX/gi" \
+        -e "s/#(404552|262933|444a58|505666|2d323d|3e434f|5b627b)/#$THEME_COLOR_BACKGD_HEX/gi" \
+        -e "s/#(afb8c5|d3dae3|bac3cf|b9bcc2)/#$THEME_COLOR_FOREGD_HEX/gi" \
+        -e "s/#(5294e2|2e3340|282b36|4dadd4)/#$THEME_COLOR_SELECT_HEX/gi" \
+        -e "s/#cc575d/#$THEME_COLOR_HOTHOT_HEX/gi" \
+        -e "s/#d7787d/#$THEME_COLOR_MANAGE_HEX/gi" \
+        -e "s/#2d323f/#$THEME_COLOR_OBJECT_HEX/gi" \
+        -e "s/#(2d303b|545860|39404d)/#3f3f3f/gi" \
+        -e "s/#be3841/#dc322f/gi" \
+        "$1/$THEME_GTK".*
 }
 
 
