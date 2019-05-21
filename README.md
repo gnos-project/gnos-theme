@@ -1,8 +1,17 @@
-# GNOS GUI Theme
-
 <p align="center"><img src="https://gnos.in/img/shot/features/theme_0.png" width="600" title="GNOS"></p>
 
-GNOS theme is a hacky automated patch of [Arc](https://horst3180/arc-theme) for [GNOS GUI](https://gnos.in/gui), supports Gnome 3.20 & 3.28.
+# GNOS Theme
+
+Minimalist flat dark theme for:
+
+- GTK 2 + 3
+- Gnome Shell 3.20 - 3.28
+- Kvantum (VirtualBox)
+- GtkSourceView (Meld)
+- Sublime Text
+- Audacity
+
+Also includes some GNOS branding assets.
 
 ## Install
 
@@ -30,3 +39,7 @@ THEME_COLOR_HOTHOT_RGB="234,117,0"
 THEME_COLOR_MANAGE_RGB="183,58,48"
 THEME_COLOR_OKOKOK_RGB="47,134,70"
 ```
+
+## Credits
+
+GNOS theme is a hacky automated patch of [Arc Dark theme](https://horst3180/arc-theme).
