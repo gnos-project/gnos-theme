@@ -4,10 +4,10 @@
 
 Minimalist flat dark theme for:
 
-- GTK 2 + 3
 - Gnome Shell 3.20 - 3.28
-- Kvantum (VirtualBox)
+- GTK 2 + 3
 - GtkSourceView (Meld)
+- Kvantum (VirtualBox)
 - Sublime Text
 - Audacity
 
@@ -19,10 +19,10 @@ Uncompress the latest release to `~/.local/share/themes`.
 
 ## Build
 
-GNOS [installer](https://github.com/gnos-project/gnos-installer) is required to build the theme:
+GNOS [installer](https://github.com/gnos-project/gnos-installer) is required to install dependencies & build the theme:
 
 ```
-sudo gnos -a theme.bash Internal BuildTheme Theme-name
+sudo gnos -a theme.bash Internal BuildTheme "Gnos-theme"
 ```
 
 ## Customizing
