@@ -1,0 +1,36 @@
+variables:
+  THEME_NAME: Gnos-Theme
+
+stages:
+  - build_theme
+  - upload_release
+
+build_theme:
+  stage: build_theme
+  only:
+    - tags
+  image: ubuntu:18.04
+  variables:
+    USER_USERNAME: builduser
+    DEBUG_INTERACTIVE: 0
+  before_script:
+    - apt update
+    - apt install -y zip unzip curl sudo patch bsdmainutils
+    - adduser --disabled-password --shell /bin/bash --gecos "" $USER_USERNAME
+    - curl -o gnowledge https://get.gnos.in/
+  script:
+    - bash gnowledge -C -a theme.bash Internal BuildTheme $THEME_NAME
+  after_script:
+    - zip -r $THEME_NAME.zip $THEME_NAME
+  artifacts:
+    expire_in: '1 hour'
+    paths:
+    - $THEME_NAME.zip
+
+upload_release:
+  stage: upload_release
+  only:
+    - tags
+  image: inetprocess/gitlab-release
+  script:
+    - gitlab-release --message 'New release ' $THEME_NAME.zip
