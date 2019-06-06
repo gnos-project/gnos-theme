@@ -1,4 +1,4 @@
-<p align="center"><img src="https://gnos.in/img/shot/features/theme_0.png" width="600" title="GNOS"></p>
+<div align="center"><p align="center"><img src="https://gnos.in/img/shot/features/theme_0.png" width="600" title="GNOS"></p></div>
 
 # GNOS Theme
 
@@ -19,10 +19,10 @@ Uncompress the latest release to `~/.local/share/themes`.
 
 ## Build
 
-GNOS [installer](https://github.com/gnos-project/gnos-installer) is required to install dependencies & build the theme:
+GNOS [installer](https://github.com/gnos-project/gnos-gnowledge) is required to install dependencies & build the theme:
 
 ```
-sudo gnos -a theme.bash Internal BuildTheme "Gnos-theme"
+sudo gnowledge -a theme.bash Internal BuildTheme "Gnos-theme"
 ```
 
 ## Customizing
