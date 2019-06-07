@@ -1,5 +1,5 @@
 variables:
-  THEME_NAME: Gnos-Theme
+  THEME_NAME: Gnos-theme
 
 stages:
   - build_theme
