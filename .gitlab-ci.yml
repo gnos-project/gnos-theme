@@ -27,10 +27,11 @@ build_theme:
     paths:
     - $THEME_NAME.zip
 
+# Requires GITLAB_ACCESS_TOKEN secret variable
 upload_release:
   stage: upload_release
   only:
     - tags
   image: inetprocess/gitlab-release
   script:
-    - gitlab-release --message 'New release ' $THEME_NAME.zip
+    - gitlab-release $THEME_NAME.zip
